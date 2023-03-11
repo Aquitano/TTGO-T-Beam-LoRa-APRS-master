@@ -148,16 +148,16 @@ const byte TXLED = 14;                   // pin number for LED on TX Tracker
 // const byte GPSLED1 = 9;     // pin gps & Heartbeat
 
 // Pins for LoRa module
-//#ifdef T_BEAM_V1_0
+// #ifdef T_BEAM_V1_0
 //   const byte lora_PReset = 14; //pin where LoRa device reset line is connected
 //   const byte lora_PNSS = 18;   //pin number where the NSS line for the LoRa device is connected.
-//#else
+// #else
 const byte lora_PReset = 23; // pin where LoRa device reset line is connected
 const byte lora_PNSS = 18;   // pin number where the NSS line for the LoRa device is connected.
-//#endif
-// pin 11  MOSI
-// pin 12  MISO
-// pin 13  SCLK
+// #endif
+//  pin 11  MOSI
+//  pin 12  MISO
+//  pin 13  SCLK
 
 // #define ModemConfig BG_RF95::Bw125Cr45Sf4096
 
@@ -279,26 +279,6 @@ Adafruit_SSD1306 display(128, 64, &Wire, OLED_RESET);
 
 void setup()
 {
-  Serial.begin(115200);
-  // Init the sensor
-  // - Heater control on pin 2
-  // - Sensor analog read on pin A0
-  // - Model LOW_CONCENTRATION
-  // - Load resistance RL of 1MOhms (1000000 Ohms)
-  MQ131.begin(2, A0, LOW_CONCENTRATION, 1000000);
-
-  Serial.println("Calibration in progress...");
-
-  MQ131.calibrate();
-
-  Serial.println("Calibration done!");
-  Serial.print("R0 = ");
-  Serial.print(MQ131.getR0());
-  Serial.println(" Ohms");
-  Serial.print("Time to heat = ");
-  Serial.print(MQ131.getTimeToRead());
-  Serial.println(" s");
-
   bool bme_status;
 
   for (int i = 0; i < ANGLE_AVGS; i++)
@@ -332,6 +312,26 @@ void setup()
 
   digitalWrite(TXLED, LOW); // turn blue LED off
   Serial.begin(115200);
+
+  // Serial.begin(115200);
+  // Init the sensor
+  // - Heater control on pin 2
+  // - Sensor analog read on pin A0
+  // - Model LOW_CONCENTRATION
+  // - Load resistance RL of 1MOhms (1000000 Ohms)
+  // MQ131.begin(2, A0, LOW_CONCENTRATION, 1000000);
+
+  Serial.println("Calibration in progress...");
+
+  // MQ131.calibrate();
+
+  // Serial.println("Calibration done!");
+  // Serial.print("R0 = ");
+  // Serial.print(MQ131.getR0());
+  // Serial.println(" Ohms");
+  // Serial.print("Time to heat = ");
+  // Serial.print(MQ131.getTimeToRead());
+  // Serial.println(" s");
 
   Wire.begin(I2C_SDA, I2C_SCL);
 
@@ -552,20 +552,20 @@ void setup()
 
 void loop()
 {
-  Serial.println("Sampling...");
-  MQ131.sample();
-  Serial.print("Concentration O3 : ");
-  Serial.print(MQ131.getO3(PPM));
-  Serial.println(" ppm");
-  Serial.print("Concentration O3 : ");
-  Serial.print(MQ131.getO3(PPB));
-  Serial.println(" ppb");
-  Serial.print("Concentration O3 : ");
-  Serial.print(MQ131.getO3(MG_M3));
-  Serial.println(" mg/m3");
-  Serial.print("Concentration O3 : ");
-  Serial.print(MQ131.getO3(UG_M3));
-  Serial.println(" ug/m3");
+  // Serial.println("Sampling...");
+  // MQ131.sample();
+  // Serial.print("Concentration O3 : ");
+  // Serial.print(MQ131.getO3(PPM));
+  // Serial.println(" ppm");
+  // Serial.print("Concentration O3 : ");
+  // Serial.print(MQ131.getO3(PPB));
+  // Serial.println(" ppb");
+  // Serial.print("Concentration O3 : ");
+  // Serial.print(MQ131.getO3(MG_M3));
+  // Serial.println(" mg/m3");
+  // Serial.print("Concentration O3 : ");
+  // Serial.print(MQ131.getO3(UG_M3));
+  // Serial.println(" ug/m3");
 
   if (digitalRead(BUTTON) == LOW)
   {
